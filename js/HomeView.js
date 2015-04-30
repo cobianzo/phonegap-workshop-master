@@ -12,17 +12,18 @@ function HomeView (store){
 	 this.render	= function() {
 	 	$("body").html("<div id='wrapper'>"+HomeView.mainTemplate()+"</div>");			 	// here -inside HomeView.render()-, "this" is HomeView
 	 	$("#wrapper").on("keyup", ".search-key", this.findByName);
+	 	$(".search-key").keyup();
 		return this;	// <- "this" is the object Homeview, y devuelve tb this.wrapper x tanto
 	};
 
 
-
+	/*	ACCIONES  */
     this.findByName	= function() {
         store.findByName(	$('.search-key').val(),  
         		function(employees) {
 		            $('.employee-list').html(HomeView.liTemplate(employees));  // Tpl declared in index.hmtl
         		});
-    },
+    };
 
 
 
