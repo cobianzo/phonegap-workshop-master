@@ -10,11 +10,9 @@ function HomeView (store){
 
 	/*  VIEWS : new HomeView(*data de store*).render() appends the template mainTemplate to body, inside a wrapper */
 	 this.render	= function() {
-	 	// here -inside HomeView.render()-, "this" is HomeView
-		mainTemplate	= Handlebars.compile(	$("#home-tpl").html()		);	// <-- returns function
-	 	$("body").html("<div id='wrapper'>"+mainTemplate()+"</div>");
+	 	$("body").html("<div id='wrapper'>"+HomeView.mainTemplate()+"</div>");			 	// here -inside HomeView.render()-, "this" is HomeView
 	 	$("#wrapper").on("keyup", ".search-key", this.findByName);
-		return this;	// <- "this" is the object Homeview, y delvuelv tb this.wrapper xtanto
+		return this;	// <- "this" is the object Homeview, y devuelve tb this.wrapper x tanto
 	};
 
 
@@ -38,5 +36,5 @@ function HomeView (store){
 load templates created in index.html (but could be in external files) 
 NOTE: inside HomeView() this elements can't be called with this. Use HomeView.mainTemplate stil*/
 
-
-HomeView.liTemplate 	= Handlebars.compile(	$("#employee-li-tpl").html());    	
+HomeView.mainTemplate	= Handlebars.compile(	$("#home-tpl").html()		);	// <-- returns function
+HomeView.liTemplate 	= Handlebars.compile( $("#employee-li-tpl").html());    	
