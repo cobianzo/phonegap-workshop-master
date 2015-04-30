@@ -15,9 +15,31 @@ var app = {
 
     initialize: function() {
     	self		= this;
-        this.store	= new MemoryStore( function(){self.showAlert("Se ha inicializado MemoryStore", "Informacion");} );
-        $('.search-key').on('keyup', $.proxy(this.findByName, this));
+        this.store	= new MemoryStore( 
+        	
+        	function(){
+	        	self.renderHomeView();
+        });
+        
     },
+
+
+	/*  VIEWS :  HTML */
+	 renderHomeView: function() {
+	 $("body").html(
+			"<div class='header'><h1>Home</h1></div>" +
+            "<div class='search-view'>" +
+            "<input class='search-key'/>" +
+            "<ul class='employee-list'></ul>" +
+            "</div>"	 
+	 );
+	 	
+	},
+
+
+
+
+
 
 
 
@@ -28,8 +50,12 @@ var app = {
 	    else 
     	    alert(title ? (title + ": " + message) : message); // browser
 	},
+	
+	
+	
 
 
 };
 
 app.initialize();
+
