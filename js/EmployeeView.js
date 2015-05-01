@@ -11,20 +11,25 @@ function EmployeeView(employeeData){		// called with EmployeeView()
 	};
 
 	// called on click so event.target should give the calling dom element
+	// Ejercicio: y di quisiese que el botón de AddLocation estuviese tb al lado del nombre de cada employee en la home? Cómo reusaría esta función?
 	this.addLocation = function(event) {
 		event.preventDefault();
-		alert("pero ha entrado?");
-		console.log('addLocation');
 
+		locationString	= "";
+		console.log('addLocation');
+		
 		/* NATIVE LOCATION API: informarme de la misma */
 		navigator.geolocation.getCurrentPosition(
 			function(position) {
-				$(".location", this.jViewContainer).html(position.coords.latitude + ',' + position.coords.longitude);
-				alert("ale, a correr");
+				locationString	=	position.coords.latitude + ',' + position.coords.longitude;
+				$(".location", this.jViewContainer).html(locationString);
+				$("h1").html(locationString);
 			},
-			function() {
-				alert('Error getting location');
-			});
+			function() {	alert('Error getting location');		}
+		);
+
+		console.log('locationString '+locationString);
+		
 		return false;
 	};	
 	
@@ -54,7 +59,6 @@ function EmployeeView(employeeData){		// called with EmployeeView()
 	
 	
 	this.render = function() {
-		alert("employee a renderizar : "+employeeData.id);		 
     	this.jViewContainer.html( EmployeeView.mainTemplate(employeeData) ); /* Imprescindible devolver this o el objeto jquery */
     	return this.jViewContainer;
 	};
