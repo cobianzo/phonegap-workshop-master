@@ -5,7 +5,15 @@
 </head>
 <body>
 
-<!-- HOMe TEMPLATE. Compilada in app.initialize y renderizada en app.renderHomeView -->
+
+<!-- ......... TEMPLATES ......... TEMPLATES ......... TEMPLATES ......... TEMPLATES  	-->
+<!-- .................................................................................	-->
+
+
+
+<!-- 1) HOME TEMPLATE. see HomeView.js 			........................................-->
+<!-- .................................................................................	-->
+
 <script id="home-tpl" type="text/x-handlebars-template">
     <div class='header'><h1>Home</h1></div>
     <div class='search-bar'>
@@ -18,7 +26,10 @@
 	</div>
 </script>
 
-<!-- LSIT ONE EMPLOYEES TEMPLATE - iteration of 1 employee -->
+
+<!-- 2) EMPLOYEE LIST ITEM. Iteration. see HomeView.js	................................-->
+<!-- .................................................................................	-->
+
 <script id="employee-li-tpl" type="text/x-handlebars-template">
     {{#.}}
     <li><a href="#employee/{{this.id}}">
@@ -30,6 +41,10 @@
 </script>
 
 
+<!-- 3) EMPLOYEE DETAILS TEMPLATE. see EmployeeView.js	................................-->
+<!-- .................................................................................	-->
+
+
 <script id="employee-tpl" type="text/x-handlebars-template">
     <div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>Details</h1></div>
     <div class='details'>
@@ -38,12 +53,21 @@
         <h2>{{title}}</h2>
         <span class="location"></span>
         <ul>
-            <li><a href="tel:{{officePhone}}">Call Office<br/>{{officePhone}}</a></li>
-            <li><a href="tel:{{cellPhone}}">Call Cell<br/>{{cellPhone}}</a></li>
-            <li><a href="sms:{{cellPhone}}">SMS<br/>{{cellPhone}}</a></li>
+            <li><a href="tel:{{officePhone}}">			Call Office<br/>{{officePhone}}	</a></li>
+            <li><a href="tel:{{cellPhone}}">			Call Cell<br/>{{cellPhone}}		</a></li>
+            <li><a href="sms:{{cellPhone}}">			SMS<br/>{{cellPhone}}			</a></li>
+            <li><a href="#" class="add-location-btn">	Add Location					</a></li>
+            <li><a href="#" class="add-contact-btn">	Add to Contacts					</a></li>
         </ul>
     </div>
 </script>
+
+<!-- .........END TEMPLATES ......... END TEMPLATES ......... ......... END TEMPLATES  -->
+<!-- ..................................................................................-->
+
+
+
+
 
 
 

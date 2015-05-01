@@ -55,18 +55,20 @@ var app = {
 	route: function() {
 		var hash = window.location.hash;
 		
+		this.showAlert(hash);
 		
 		/* EMPLOYEEDETAILS routing */
 		/* ----------------------- */				
 		if (match = hash.match(this.routing.employeeDetails)) {
 			var id_employee	= Number(match[1]);
-			this.store.findById(Number(match[1]), function(employee) {
-				$('body').html(new EmployeeView(employee).render().html());
+			this.store.findById(id_employee, function(employee) {
+				$('body').html(new EmployeeView(employee).render());  // imprescindible meter un jQuery object dentro de .html(), no vale sólo html o no heredará los eventos asociados, creados en EmployeeView.js
 			});
 		}
-		else	/* ........... HOMEPAGE routing  ----------------  si no tiene anchor (#whatever) mostramos home */
-		{		
-			$('body').html(new HomeView(this.store).render().el);
+		else if (!hash)	/* ........... HOMEPAGE routing  ----------------  si no tiene anchor (#whatever) mostramos home */
+		{
+			$('body').html(new HomeView(this.store).render());
+			$(".search-key").keyup();//			::: para mostrar los nombres por defecto
 			return;
 		}
 
