@@ -32,8 +32,49 @@ var app = {
 			$('body').on('mouseup', 'a', function(event) {
 				$("a").removeClass('tappable-active');
 			});
-		}
+		};
+		
+		// cada vez que cambie la url 'hashchange', llamamos a route, que recarga la página dinámicamente
+		$(window).on('hashchange', $.proxy(this.route, this));
+		
 	},
+	
+	
+	
+	
+	
+
+	/* ROUTING *********** ROUTING *********** ROUTING *********** *********** *********** */
+	/* ----------------------------------------------------------------------------------- */
+	
+	
+	routing: {
+		employeeDetails	: /^#employee\/(\d{1,})/,	
+	},
+	
+	route: function() {
+		var hash = window.location.hash;
+		
+		
+		/* EMPLOYEEDETAILS routing */
+		/* ----------------------- */				
+		if (match = hash.match(this.routing.employeeDetails)) {
+			var id_employee	= Number(match[1]);
+			this.store.findById(Number(match[1]), function(employee) {
+				$('body').html(new EmployeeView(employee).render().html());
+			});
+		}
+		else	/* ........... HOMEPAGE routing  ----------------  si no tiene anchor (#whatever) mostramos home */
+		{		
+			$('body').html(new HomeView(this.store).render().el);
+			return;
+		}
+
+		
+		
+	},
+
+
 
 
 
@@ -51,9 +92,11 @@ var app = {
 	
     initialize: function() {
 
+
 	    var self = this;
     	this.store = new MemoryStore(function() {			// object app.store
-    		new HomeView(self.store).render();
+    		self.route();
+			// los enventos que tengan q pasar en "onload" digamos, q vengan aquí, donde se carga la home    		
 	    });        
 		this.registerEvents();
     	
